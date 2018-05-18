@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -196,7 +197,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Services" id="1pb-9h-uR1"/>
                     <connections>
-                        <segue destination="0wX-ZT-Fdd" kind="show" id="fTz-cE-u0K"/>
+                        <segue destination="0wX-ZT-Fdd" kind="show" identifier="showCharacteristics" id="fTz-cE-u0K"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jt3-8C-njV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,19 +207,96 @@
         <!--Characteristics-->
         <scene sceneID="v3i-nT-CAT">
             <objects>
-                <tableViewController id="0wX-ZT-Fdd" userLabel="Characteristics" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PeripheralCharacteristicsViewController" id="0wX-ZT-Fdd" userLabel="Characteristics" customClass="PeripheralCharacteristicsViewController" customModule="BluetoothExplorer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="cVM-TD-5gw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Nbf-mE-Qn7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="70" id="Nbf-mE-Qn7" customClass="DetailCell" customModule="BluetoothExplorer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nbf-mE-Qn7" id="p6L-ny-KWy">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="YFg-g0-sS8" userLabel="Title Label">
+                                            <rect key="frame" x="32" y="10" width="256" height="27"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="bTk-wK-U8f" userLabel="Subtitle Label">
+                                            <rect key="frame" x="32" y="42" width="256" height="17.5"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="YFg-g0-sS8" secondAttribute="trailing" constant="16" id="9K4-5D-V8T"/>
+                                        <constraint firstItem="YFg-g0-sS8" firstAttribute="leading" secondItem="p6L-ny-KWy" secondAttribute="leadingMargin" constant="16" id="WPZ-Mb-e3d"/>
+                                        <constraint firstItem="bTk-wK-U8f" firstAttribute="trailing" secondItem="YFg-g0-sS8" secondAttribute="trailing" id="ciB-Oh-ldy"/>
+                                        <constraint firstItem="YFg-g0-sS8" firstAttribute="top" secondItem="p6L-ny-KWy" secondAttribute="top" constant="10" id="dLp-6q-x1B"/>
+                                        <constraint firstItem="bTk-wK-U8f" firstAttribute="leading" secondItem="YFg-g0-sS8" secondAttribute="leading" id="khr-jr-4v1"/>
+                                        <constraint firstAttribute="bottom" secondItem="bTk-wK-U8f" secondAttribute="bottom" constant="10" id="xNZ-r5-aKd"/>
+                                        <constraint firstItem="bTk-wK-U8f" firstAttribute="top" secondItem="YFg-g0-sS8" secondAttribute="bottom" constant="5" id="yif-rM-Kv9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subtitleLabel" destination="bTk-wK-U8f" id="7sc-49-rig"/>
+                                    <outlet property="titleLabel" destination="YFg-g0-sS8" id="hCJ-Ug-xIQ"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ElementCell" rowHeight="70" id="vNw-3A-Aea" customClass="ElementCell" customModule="BluetoothExplorer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="125.5" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vNw-3A-Aea" id="oRB-vL-x5Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="565-bC-5cL" userLabel="Title Label">
+                                            <rect key="frame" x="32" y="10" width="256" height="49.5"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="565-bC-5cL" secondAttribute="bottom" constant="10" id="K6Z-KS-1ey"/>
+                                        <constraint firstItem="565-bC-5cL" firstAttribute="leading" secondItem="oRB-vL-x5Q" secondAttribute="leadingMargin" constant="16" id="RXw-Dz-TAj"/>
+                                        <constraint firstItem="565-bC-5cL" firstAttribute="top" secondItem="oRB-vL-x5Q" secondAttribute="top" constant="10" id="cT6-UM-YSv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="565-bC-5cL" secondAttribute="trailing" constant="16" id="ewe-Jz-Ll7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="element" destination="565-bC-5cL" id="lqo-Bc-NnR"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonCell" rowHeight="35" id="sVk-7a-HfD" customClass="ButtontCell" customModule="BluetoothExplorer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="195.5" width="320" height="35"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVk-7a-HfD" id="s3S-wg-7U3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="34.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write new value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6a-Xu-7Q3">
+                                            <rect key="frame" x="32" y="10" width="280" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="l6a-Xu-7Q3" secondAttribute="bottom" constant="10" id="D9G-8b-qMp"/>
+                                        <constraint firstItem="l6a-Xu-7Q3" firstAttribute="leading" secondItem="s3S-wg-7U3" secondAttribute="leadingMargin" constant="16" id="Vhw-ch-JSw"/>
+                                        <constraint firstAttribute="trailing" secondItem="l6a-Xu-7Q3" secondAttribute="trailingMargin" constant="16" id="mTL-gu-YZf"/>
+                                        <constraint firstItem="l6a-Xu-7Q3" firstAttribute="top" secondItem="s3S-wg-7U3" secondAttribute="top" constant="10" id="qqA-rp-Ajj"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="l6a-Xu-7Q3" id="JIZ-kL-M6d"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -226,6 +304,10 @@
                             <outlet property="delegate" destination="0wX-ZT-Fdd" id="TjK-o0-Lw6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="BuD-KV-DmV"/>
+                    <connections>
+                        <outlet property="navigationItemView" destination="BuD-KV-DmV" id="dfH-6X-hkU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdK-zN-D1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
