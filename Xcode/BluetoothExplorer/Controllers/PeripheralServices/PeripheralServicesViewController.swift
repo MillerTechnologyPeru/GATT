@@ -87,13 +87,6 @@ class PeripheralServicesViewController: UITableViewController {
     
     // MARK: - Private
     
-    private func showLoading() {
-        DispatchQueue.main.async { HUD.show(.progress) }
-    }
-    
-    private func hideLoading() {
-        DispatchQueue.main.async { HUD.hide() }
-    }
 }
 
 extension PeripheralServicesViewController {
